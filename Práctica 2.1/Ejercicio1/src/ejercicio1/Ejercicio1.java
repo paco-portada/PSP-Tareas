@@ -16,6 +16,18 @@ public class Ejercicio1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        long tiempo = System.currentTimeMillis();
+        
+        CalculaPrimo t1 = new CalculaPrimo(67);
+        CountDown t2 = new CountDown();
+        
+        t1.start();;
+        t2.start();
+        
+        while (t1.isAlive() || t2.isAlive()) {
+        }
+        
+        System.out.println("Tiempo de ejecución del programa Ejercicio1: "+(System.currentTimeMillis()-tiempo)+"ms");
     }
     
 }
