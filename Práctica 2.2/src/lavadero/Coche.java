@@ -31,9 +31,7 @@ public class Coche {
         this.nombre = nombre;
         this.size=size;
         this.wash=wash;
-    }
-    
-    public Integer getTiempoLavado() {
+
         switch (wash) {
             case SUPER:
                 tiempoLavado+=2;
@@ -51,7 +49,9 @@ public class Coche {
                 tiempoLavado+=8;
                 break;
         }
-        
+    }
+    
+    public Integer getTiempoLavado() {
         return tiempoLavado;
     }
     
