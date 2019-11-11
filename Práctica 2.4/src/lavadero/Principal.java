@@ -54,6 +54,7 @@ public class Principal {
         //ordena la destrucción de los dos hilos del pool cuando hayan
         //completado todas las tareas
         executor.shutdown();
+        //executor.awaitTermination(45, TimeUnit.SECONDS);
         
         //while (!executor.isTerminated()){}
         long tiempoTot = (System.currentTimeMillis()-tiempoIni)/1000; //Calculamos el tiempo total de ejecucion
