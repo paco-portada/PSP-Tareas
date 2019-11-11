@@ -2,8 +2,6 @@ package lavadero;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lavadero.Coche.Size;
 import lavadero.Coche.Wash;
 
@@ -79,4 +77,5 @@ public class Principal {
         long tiempoTot = (System.currentTimeMillis()-tiempoIni)/1000; //Calculamos el tiempo total de ejecucion
         System.out.println("--- FIN Lavadero (Tiempo: "+tiempoTot+"s) ---");
     }
+    
 }
