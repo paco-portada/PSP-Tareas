@@ -7,7 +7,7 @@ package lavadero;
 
 /**
  *
- * @author jmfdiaz 2019
+ * @author jmfdiaz
  */
 public class Coche {
     public enum Size {
