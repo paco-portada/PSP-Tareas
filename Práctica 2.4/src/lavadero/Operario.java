@@ -36,6 +36,7 @@ public class Operario implements Runnable{
     }
     
     public String getNombre(){
-        return this.nombre;
+        //return this.nombre;
+        return Thread.currentThread().getName();
     }
 }

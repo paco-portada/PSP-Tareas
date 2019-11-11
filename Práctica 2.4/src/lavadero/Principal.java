@@ -24,6 +24,7 @@ public class Principal {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.InterruptedException
      */
     public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
@@ -46,7 +47,7 @@ public class Principal {
         //define un pool fijo de dos hilos
         ExecutorService executor = Executors.newFixedThreadPool(2);
 
-        //pasa 30 tareas NumerosAleatorios al pool de 2 hilos
+        //pasa los 4 coches al pool de 2 hilos
         for (int i = 0; i < listaCoches.size(); i++) {
             executor.submit(new Operario("Operario", listaCoches.get(i)));
         }
