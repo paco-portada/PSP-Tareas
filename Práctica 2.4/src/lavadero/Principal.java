@@ -1,9 +1,7 @@
 package lavadero;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -55,9 +53,9 @@ public class Principal {
         //ordena la destrucción de los dos hilos del pool cuando hayan
         //completado todas las tareas
         executor.shutdown();
-        //executor.awaitTermination(45, TimeUnit.SECONDS);
-        
+        executor.awaitTermination(100, TimeUnit.SECONDS);
         //while (!executor.isTerminated()){}
+        
         long tiempoTot = (System.currentTimeMillis()-tiempoIni)/1000; //Calculamos el tiempo total de ejecucion
         System.out.println("--- FIN Lavadero (Tiempo: "+tiempoTot+"s) ---");
     }
