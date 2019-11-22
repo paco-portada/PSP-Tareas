@@ -15,16 +15,19 @@ import java.net.Socket;
  *
  * @author jmfdiaz
  */
-public class Servidor implements Runnable{
+public class RunServidor implements Runnable{
     
     private Socket skCliente;
     
-    Servidor(Socket skCliente){
+    RunServidor(Socket skCliente){
         this.skCliente=skCliente;
     }
 
     @Override
     public void run() {
+        String cadMensaje;
+        boolean salir = false;
+        
         try {
             // Creo los flujos de entrada y salida
             DataInputStream flujo_entrada = new DataInputStream(skCliente.getInputStream());
@@ -33,12 +36,24 @@ public class Servidor implements Runnable{
             // ATENDER PETICIÓN DEL CLIENTE
             flujo_salida.writeUTF("Se ha conectado el cliente de forma correcta");
 
-            // Se cierra la conexión
-            skCliente.close();
-            System.out.println("Cliente desconectado");
+            do {
+                //Leer texto y enviar
+                cadMensaje = flujo_entrada.readUTF();
+                System.out.println("CLIENTE: "+cadMensaje);
+                flujo_salida.writeUTF(cadMensaje);
 
-        } catch (IOException e) {
-            System.out.println("Error de E/S: " + e.getMessage());
+                //Si el servidor manda el mensaje de cierre, la ejecucion finaliza
+                if(cadMensaje.equalsIgnoreCase("exit")){
+                    salir = true;
+                }
+            } while(!salir);
+
+            skCliente.close();
+        } catch (IOException ex) {
+            System.out.println("Error de E/S: " + ex.getMessage());
+        } finally {
+            // Se cierra la conexión
+            System.out.println("Cliente desconectado");
         }
     }
     
