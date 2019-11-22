@@ -66,6 +66,7 @@ public class Ventana extends javax.swing.JFrame {
         lblIconoConex.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/disconnected.png"))); // NOI18N
 
         btnEnviar.setText("Enviar");
+        btnEnviar.setEnabled(false);
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnviarActionPerformed(evt);
@@ -172,11 +173,13 @@ public class Ventana extends javax.swing.JFrame {
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         cliente.conectar("localhost", 15000);
         // TODO: Cambiar icono
+        btnEnviar.setEnabled(true);
     }//GEN-LAST:event_btnConectarActionPerformed
 
     private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed
         cliente.desconectar();
         // TODO: Cambiar icono
+        btnEnviar.setEnabled(false);
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
