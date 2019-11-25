@@ -1,10 +1,8 @@
 package servidorg2;
 
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -31,13 +29,13 @@ public class HiloEscribir extends Thread {
             Scanner teclado = new Scanner(System.in);
             
             do {
+                // Lee del teclado 
                 cadMensaje = teclado.nextLine();
             
-                System.out.println("CLIENTE: "+cadMensaje);
-                // Se hace un eco
+                // Lo manda al cliente
                 flujo_salida.writeUTF(cadMensaje);
 
-                // Si el servidor manda el mensaje de cierre, la ejecucion finaliza
+                // Si se lee el mensaje de cierre, la ejecucion finaliza
                 if(cadMensaje.equalsIgnoreCase("exit")){
                     salir = true;
                 }

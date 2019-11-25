@@ -8,8 +8,6 @@ package clienteG;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -39,6 +37,7 @@ public class RunCliente implements Runnable{
                 
                 System.out.println("SERVIDOR: "+cadMensaje);
                 ventana.escribirTexto("SERVIDOR: "+cadMensaje);
+                
                 // Si el mensaje recibido del servidor es exit finalizamos este hilo
                 if(cadMensaje.equalsIgnoreCase("exit")){
                     salir = true;
@@ -48,6 +47,9 @@ public class RunCliente implements Runnable{
             skCliente.close();
         } catch (IOException ex) {
             System.out.println("Error de E/S: " + ex.getMessage());
+        } finally {
+            // Se cierra la conexión
+            System.out.println("Desconexión desde el servidor");
         }
     }
 }

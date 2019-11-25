@@ -14,8 +14,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.* ;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class HiloServidor extends Thread{
 
@@ -39,11 +37,11 @@ public class HiloServidor extends Thread{
             flujo_salida.writeUTF("Se ha conectado el cliente de forma correcta");
 
             do {
-                // Leer texto y enviar
+                // Leer texto del cliente y lo muestra por pantalla
                 cadMensaje = flujo_entrada.readUTF();
                 System.out.println("CLIENTE: "+cadMensaje);
 
-                // Si el servidor manda el mensaje de cierre, la ejecucion finaliza
+                // Si el cliente manda el mensaje de cierre, la ejecucion finaliza
                 if(cadMensaje.equalsIgnoreCase("exit")){
                     salir = true;
                 }

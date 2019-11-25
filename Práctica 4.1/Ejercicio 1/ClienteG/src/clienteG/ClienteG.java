@@ -59,6 +59,10 @@ public class ClienteG {
         boolean ret = false;
         
         try {
+            // Mando mensaje de salida
+            DataOutputStream flujo_salida = new DataOutputStream(skCliente.getOutputStream());
+            flujo_salida.writeUTF("exit");
+
             skCliente.close();
             ret = true;
         } catch (IOException ex) {

@@ -8,8 +8,6 @@ package servidorg2;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -53,14 +51,13 @@ public class ServidorG2 {
             //new HiloEscribir(skCliente).start();
             
             // Espero a que termine el hilo que lee del teclado
-            hEscribir.wait();
+            while (hEscribir.isAlive()){
+            }
             
             // Habría que cerrar el hilo que lee del cliente, pero se cierra sólo
             hServidor.interrupt();
         } catch (IOException e) {
             System.out.println("Error E/S en el servidor: " + e.getMessage());
-        } catch (InterruptedException ex) {
-            System.out.println("Error en Interrupción: " + ex.getMessage());
         } finally {
             // Intentar cerrar el socket del servidor por si ocurre cualquier error
             try {

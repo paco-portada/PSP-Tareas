@@ -43,7 +43,7 @@ public class RunServidor implements Runnable{
                 // Se hace un eco
                 flujo_salida.writeUTF(cadMensaje);
 
-                // Si el servidor manda el mensaje de cierre, la ejecucion finaliza
+                // Si el cliente manda el mensaje de cierre, la ejecucion finaliza
                 if(cadMensaje.equalsIgnoreCase("exit")){
                     salir = true;
                 }
