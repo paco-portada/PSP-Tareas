@@ -14,14 +14,15 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Cliente {
+public class ClienteG {
     
+    Thread tCliente;
     private Socket skCliente;
     private DataInputStream flujo_entrada;
     private DataOutputStream flujo_salida;
     private Ventana ventana;
 
-    public Cliente(Ventana ventana){
+    public ClienteG(Ventana ventana){
         this.ventana = ventana;
     }
     
@@ -36,14 +37,16 @@ public class Cliente {
 
             // TAREAS QUE REALIZA EL CLIENTE
             String datos = flujo_entrada.readUTF();
-            System.out.println(datos);
-            
-            ventana.escribirTexto(datos);
+            System.out.println("SERVIDOR: "+datos);
+            ventana.escribirTexto("SERVIDOR: "+datos);
+
+            // Atiendo al cliente mediante un thread
+            tCliente = new Thread(new RunCliente(ventana, skCliente));
+            tCliente.start();
         } catch (UnknownHostException e) {
             System.out.println("Host Desconocido " + e.getMessage());
-
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error de E/S: " + ex.getMessage());
         }
     }
     
@@ -51,7 +54,7 @@ public class Cliente {
         try {
             skCliente.close();
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteG.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }
     
@@ -59,7 +62,7 @@ public class Cliente {
         try {
             flujo_salida.writeUTF(texto);
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteG.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

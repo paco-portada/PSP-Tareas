@@ -37,10 +37,10 @@ public class ServidorG {
             while (true) {
                 // Se conecta un cliente
                 Socket skCliente = skServidor.accept();
-                System.out.println("Cliente conectado"+skCliente.getPort());
+                System.out.println("Cliente conectado: "+skCliente.getInetAddress()+":"+skCliente.getPort());
 
                 // Atiendo al cliente mediante un thread
-                tServidor = new Thread(new Servidor(skCliente));
+                tServidor = new Thread(new RunServidor(skCliente));
                 tServidor.start();
             }
         } catch (IOException e) {

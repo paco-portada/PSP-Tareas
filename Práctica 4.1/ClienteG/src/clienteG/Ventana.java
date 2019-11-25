@@ -11,17 +11,17 @@ package clienteG;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    private Cliente cliente;
+    private ClienteG cliente;
     /**
      * Creates new form Ventana
      */
     public Ventana() {
         initComponents();
-        cliente = new Cliente(this);
+        cliente = new ClienteG(this);
     }
     
     public void escribirTexto(String texto){
-        txtMostrar.setText(texto);
+        txtMostrar.append(texto+"\n");
     }
 
     /**
@@ -184,6 +184,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         cliente.enviar(txtEnviar.getText());
+        escribirTexto("CLIENTE: "+txtEnviar.getText());
         txtEnviar.setText("");
     }//GEN-LAST:event_btnEnviarActionPerformed
 
