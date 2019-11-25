@@ -5,8 +5,6 @@
  */
 package servidorg;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -26,6 +24,9 @@ public class ServidorG {
         ServerSocket skServidor = null;
         Thread tServidor;
         
+        // Por si queremos tener una lista de hilos 
+        //List<Thread> hilos = new ArrayList<>();
+        
         try {
             // Inicio el servidor en el puerto
             skServidor = new ServerSocket(PUERTO);
@@ -42,17 +43,23 @@ public class ServidorG {
                 // Atiendo al cliente mediante un thread
                 tServidor = new Thread(new RunServidor(skCliente));
                 tServidor.start();
+                // De forma inplícita
+                //new Thread(new RunServidor(skCliente)).start();
+                
+                // Añadiéndolo a la lista de hilos por si nos hicera falta, por ejemplo para cerrarlos
+                //hilos.add(tServidor);
+                //hilos.stream().forEach((c) -> {c.interrupt();});
             }
         } catch (IOException e) {
-            System.out.println("Error E/S en el servidor: " + e);
+            System.out.println("Error E/S en el servidor: " + e.getMessage());
         } finally {
             // Intentar cerrar el socket del servidor por si ocurre cualquier error
             try {
                 if (skServidor != null) {
                     skServidor.close();
                 }
-            } catch (IOException e) {
-                System.out.println("Error E/S al cerrar el servidor");
+            } catch (IOException ex) {
+                System.out.println("Error E/S al finalizar el servidor: "+ ex.getMessage());
             }
         }
     }

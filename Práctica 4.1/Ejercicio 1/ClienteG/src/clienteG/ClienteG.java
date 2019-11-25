@@ -11,8 +11,6 @@ package clienteG;
  */
 import java.io.*;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ClienteG {
     
@@ -26,10 +24,13 @@ public class ClienteG {
         this.ventana = ventana;
     }
     
-    public void conectar(String HOST, int Puerto) {
+    public boolean conectar(String HOST, int Puerto) {
+        boolean ret = false;
+        
         try {
             // Creo el socket del cliente
             skCliente = new Socket(HOST, Puerto);
+            ret = true;
 
             // Creo los flujos de entrada y salida
             flujo_entrada = new DataInputStream(skCliente.getInputStream());
@@ -43,26 +44,35 @@ public class ClienteG {
             // Atiendo al cliente mediante un thread
             tCliente = new Thread(new RunCliente(ventana, skCliente));
             tCliente.start();
+            // De manera implícita
+            //new Thread(new RunCliente(ventana, skCliente)).start();
         } catch (UnknownHostException e) {
             System.out.println("Host Desconocido " + e.getMessage());
         } catch (IOException ex) {
-            System.out.println("Error de E/S: " + ex.getMessage());
-        }
+            System.out.println("Error de E/S al conectar: " + ex.getMessage());
+        } 
+        
+        return ret;
     }
     
-    public void desconectar(){
+    public boolean desconectar(){
+        boolean ret = false;
+        
         try {
             skCliente.close();
+            ret = true;
         } catch (IOException ex) {
-            Logger.getLogger(ClienteG.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error de E/S al desconectar: " + ex.getMessage());
         }    
+        
+        return ret;
     }
     
     public void enviar(String texto){
         try {
             flujo_salida.writeUTF(texto);
         } catch (IOException ex) {
-            Logger.getLogger(ClienteG.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error de E/S al enviar: " + ex.getMessage());
         }
     }
 }

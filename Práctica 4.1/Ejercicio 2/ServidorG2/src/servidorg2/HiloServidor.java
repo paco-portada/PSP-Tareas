@@ -1,48 +1,49 @@
-package servidorg;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package servidorg2;
+
+/**
+ *
+ * @author ramon
+ */
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
+import java.net.* ;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+public class HiloServidor extends Thread{
 
-/**
- *
- * @author jmfdiaz
- */
-public class RunServidor implements Runnable{
-    
     private Socket skCliente;
-    
-    RunServidor(Socket skCliente){
+
+    HiloServidor(Socket skCliente) {
         this.skCliente=skCliente;
     }
 
     @Override
-    public void run() {
+    public void run () {
         String cadMensaje;
         boolean salir = false;
         
         try {
-            // Creo los flujos de entrada y salida
+            // Se crean los streams de entrada y salida
             DataInputStream flujo_entrada = new DataInputStream(skCliente.getInputStream());
             DataOutputStream flujo_salida = new DataOutputStream(skCliente.getOutputStream());
 
-            // ATENDER PETICIÓN DEL CLIENTE
+            // Se notofica al cliente la conexión
             flujo_salida.writeUTF("Se ha conectado el cliente de forma correcta");
 
             do {
-                //Leer texto y enviar
+                // Leer texto y enviar
                 cadMensaje = flujo_entrada.readUTF();
                 System.out.println("CLIENTE: "+cadMensaje);
-                flujo_salida.writeUTF(cadMensaje);
 
-                //Si el servidor manda el mensaje de cierre, la ejecucion finaliza
+                // Si el servidor manda el mensaje de cierre, la ejecucion finaliza
                 if(cadMensaje.equalsIgnoreCase("exit")){
                     salir = true;
                 }
@@ -56,5 +57,5 @@ public class RunServidor implements Runnable{
             System.out.println("Cliente desconectado");
         }
     }
-    
+
 }

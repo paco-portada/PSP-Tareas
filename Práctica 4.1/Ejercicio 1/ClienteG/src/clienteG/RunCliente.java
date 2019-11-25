@@ -34,14 +34,14 @@ public class RunCliente implements Runnable{
             DataInputStream flujo_entrada = new DataInputStream(skCliente.getInputStream());
 
             do{
+                // Se recibe el mensaje del servidor
                 cadMensaje = flujo_entrada.readUTF();
                 
-                //Si el mensaje recibido del servidor es exit finalizamos este hilo
+                System.out.println("SERVIDOR: "+cadMensaje);
+                ventana.escribirTexto("SERVIDOR: "+cadMensaje);
+                // Si el mensaje recibido del servidor es exit finalizamos este hilo
                 if(cadMensaje.equalsIgnoreCase("exit")){
                     salir = true;
-                } else {
-                    System.out.println("SERVIDOR: "+cadMensaje);
-                    ventana.escribirTexto("SERVIDOR: "+cadMensaje);
                 }
             } while (!salir);
             
