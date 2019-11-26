@@ -32,7 +32,6 @@ public class Ventana extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMostrar = new javax.swing.JTextArea();
@@ -56,7 +55,7 @@ public class Ventana extends javax.swing.JFrame {
         txtMostrar.setRows(5);
         jScrollPane1.setViewportView(txtMostrar);
 
-        txtDireccion.setEnabled(true);
+        txtPuerto.setText("15000");
 
         btnSalir.setText("Salir");
 
@@ -67,10 +66,7 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2.setText("Puerto");
 
         btnEnviar.setText("Enviar");
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, rbConex, org.jdesktop.beansbinding.ELProperty.create("${selected}"), btnEnviar, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
-        bindingGroup.addBinding(binding);
-
+        btnEnviar.setEnabled(true);
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnviarActionPerformed(evt);
@@ -169,12 +165,11 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bindingGroup.bind();
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+        // Cconvertir los dartos de las cajas de texto
         boolean conectar = cliente.conectar("localhost", 15000);
         // TODO: Cambiar icono
         rbConex.setSelected(conectar);
@@ -241,6 +236,5 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField txtEnviar;
     private javax.swing.JTextArea txtMostrar;
     private javax.swing.JTextField txtPuerto;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

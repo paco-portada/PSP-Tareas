@@ -30,13 +30,14 @@ public class ClienteG {
         try {
             // Creo el socket del cliente
             skCliente = new Socket(HOST, Puerto);
+            //skCliente.setSoTimeout(100);
             ret = true;
 
             // Creo los flujos de entrada y salida
             flujo_entrada = new DataInputStream(skCliente.getInputStream());
             flujo_salida = new DataOutputStream(skCliente.getOutputStream());
 
-            // TAREAS QUE REALIZA EL CLIENTE
+            // Lectura inicial de información del servidor
             String datos = flujo_entrada.readUTF();
             System.out.println("SERVIDOR: "+datos);
             ventana.escribirTexto("SERVIDOR: "+datos);

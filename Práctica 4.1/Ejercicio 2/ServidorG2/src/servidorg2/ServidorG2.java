@@ -32,29 +32,23 @@ public class ServidorG2 {
             Socket skCliente = skServidor.accept();
             System.out.println("Cliente conectado: "+skCliente.getInetAddress()+":"+skCliente.getPort());
 
-            // crear un objeto de la clase servidor
+            // crear un objeto de la clase servidor que lee del cliente y lo inicia
             hServidor = new HiloServidor(skCliente);
-
-            // iniciar al servidor para que esté a la escucha en el puerto
             hServidor.start();
-
-            // De forma inplícita
+            // De forma implícita
             //new HiloServidor(skCliente).start();
                 
-            // crear el hilo que lee del teclado y escribe al cliente
+            // crear el hilo que lee del teclado y escribe al cliente y lo inicia
             hEscribir = new HiloEscribir(skCliente);
-
-            // iniciar al hilo que lee del teclado
             hEscribir.start();
-
-            // De forma inplícita
+            // De forma implícita
             //new HiloEscribir(skCliente).start();
             
             // Espero a que termine el hilo que lee del teclado
             while (hEscribir.isAlive()){
             }
             
-            // Habría que cerrar el hilo que lee del cliente, pero se cierra sólo
+            // Habría que cerrar el hilo que lee del cliente, pero se cierra sólo al cerrar el socket
             hServidor.interrupt();
         } catch (IOException e) {
             System.out.println("Error E/S en el servidor: " + e.getMessage());

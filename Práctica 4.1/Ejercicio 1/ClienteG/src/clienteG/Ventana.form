@@ -128,11 +128,11 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtDireccion">
-      <Properties>
-        <Property name="enabled" type="boolean" value="true"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPuerto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="15000"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
@@ -158,10 +158,8 @@
     <Component class="javax.swing.JButton" name="btnEnviar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enviar"/>
+        <Property name="enabled" type="boolean" value="true"/>
       </Properties>
-      <BindingProperties>
-        <BindingProperty name="enabled" source="rbConex" sourcePath="${selected}" target="btnEnviar" targetPath="enabled" updateStrategy="0" immediately="false"/>
-      </BindingProperties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnviarActionPerformed"/>
       </Events>

@@ -43,7 +43,7 @@ public class ServidorG {
                 // Atiendo al cliente mediante un thread
                 tServidor = new Thread(new RunServidor(skCliente));
                 tServidor.start();
-                // De forma inplícita
+                // De forma implícita
                 //new Thread(new RunServidor(skCliente)).start();
                 
                 // Añadiéndolo a la lista de hilos por si nos hicera falta, por ejemplo para cerrarlos

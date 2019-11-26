@@ -40,6 +40,7 @@ public class RunServidor implements Runnable{
                 // Leer texto y enviar
                 cadMensaje = flujo_entrada.readUTF();
                 System.out.println("CLIENTE: "+cadMensaje);
+                
                 // Se hace un eco
                 flujo_salida.writeUTF(cadMensaje);
 
