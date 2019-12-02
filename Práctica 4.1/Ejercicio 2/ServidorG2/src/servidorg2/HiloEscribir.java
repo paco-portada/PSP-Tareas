@@ -41,7 +41,7 @@ public class HiloEscribir extends Thread {
                 }
             } while(!salir);
 
-            skCliente.close();
+            //skCliente.close();
         } catch (IOException ex) {
             System.out.println("Error de E/S: " + ex.getMessage());
         } finally {
