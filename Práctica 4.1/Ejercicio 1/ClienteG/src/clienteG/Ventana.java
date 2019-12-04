@@ -5,6 +5,8 @@
  */
 package clienteG;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author jmfdiaz
@@ -66,10 +68,20 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2.setText("Puerto");
 
         btnEnviar.setText("Enviar");
-        btnEnviar.setEnabled(true);
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnviarActionPerformed(evt);
+            }
+        });
+
+        txtEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEnviarActionPerformed(evt);
+            }
+        });
+        txtEnviar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEnviarKeyPressed(evt);
             }
         });
 
@@ -186,6 +198,24 @@ public class Ventana extends javax.swing.JFrame {
         escribirTexto("CLIENTE: "+txtEnviar.getText());
         txtEnviar.setText("");
     }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void txtEnviarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnviarKeyPressed
+        /*
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cliente.enviar(txtEnviar.getText());
+            escribirTexto("CLIENTE: "+txtEnviar.getText());
+            txtEnviar.setText("");
+        }
+        */
+    }//GEN-LAST:event_txtEnviarKeyPressed
+
+    private void txtEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnviarActionPerformed
+        /*
+        cliente.enviar(txtEnviar.getText());
+        escribirTexto("CLIENTE: "+txtEnviar.getText());
+        txtEnviar.setText("");
+        */
+    }//GEN-LAST:event_txtEnviarActionPerformed
 
     /**
      * @param args the command line arguments
