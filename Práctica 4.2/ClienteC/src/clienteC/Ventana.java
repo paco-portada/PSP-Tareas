@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clienteG;
+package clienteC;
 
 import java.awt.event.KeyEvent;
 
@@ -13,13 +13,13 @@ import java.awt.event.KeyEvent;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    private ClienteG cliente;
+    private ClienteC cliente;
     /**
      * Creates new form Ventana
      */
     public Ventana() {
         initComponents();
-        cliente = new ClienteG(this);
+        cliente = new ClienteC(this);
     }
     
     public void escribirTexto(String texto){
@@ -48,6 +48,8 @@ public class Ventana extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnDesconectar = new javax.swing.JButton();
         rbConex = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtNick = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cliente Gráfico");
@@ -57,7 +59,10 @@ public class Ventana extends javax.swing.JFrame {
         txtMostrar.setRows(5);
         jScrollPane1.setViewportView(txtMostrar);
 
-        txtPuerto.setText("15000");
+        txtDireccion.setText("localhost");
+        txtDireccion.setToolTipText("");
+
+        txtPuerto.setText("59001");
 
         btnSalir.setText("Salir");
 
@@ -108,6 +113,11 @@ public class Ventana extends javax.swing.JFrame {
         rbConex.setEnabled(false);
         rbConex.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Nick");
+
+        txtNick.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,22 +134,25 @@ public class Ventana extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(26, 26, 26)
-                        .addComponent(txtDireccion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(40, 40, 40)
-                        .addComponent(txtPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rbConex, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDesconectar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnDesconectar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPuerto)
+                                .addGap(80, 80, 80))
+                            .addComponent(txtNick)
+                            .addComponent(txtDireccion))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -147,7 +160,13 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -163,9 +182,7 @@ public class Ventana extends javax.swing.JFrame {
                                 .addComponent(btnDesconectar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
-                                .addComponent(rbConex, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(7, 7, 7))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                                .addComponent(rbConex, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalir)
@@ -177,12 +194,14 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel3.getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // Cconvertir los dartos de las cajas de texto
-        boolean conectar = cliente.conectar("localhost", 15000);
+        boolean conectar = cliente.conectar("localhost", 59001);
         // TODO: Cambiar icono
         rbConex.setSelected(conectar);
     }//GEN-LAST:event_btnConectarActionPerformed
@@ -259,12 +278,14 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbConex;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEnviar;
     private javax.swing.JTextArea txtMostrar;
+    private javax.swing.JTextField txtNick;
     private javax.swing.JTextField txtPuerto;
     // End of variables declaration//GEN-END:variables
 }
