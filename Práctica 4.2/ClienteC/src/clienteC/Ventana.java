@@ -201,7 +201,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // Cconvertir los dartos de las cajas de texto
-        boolean conectar = cliente.conectar("localhost", 59001);
+        boolean conectar = cliente.conectar(txtDireccion.getText(), Integer.parseInt(txtPuerto.getText()));
         // TODO: Cambiar icono
         rbConex.setSelected(conectar);
     }//GEN-LAST:event_btnConectarActionPerformed
